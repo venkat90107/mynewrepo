@@ -6,7 +6,7 @@ pipeline {
         cron('* * * * *')
     }
     environment {
-        def BUILDVERSION = bat(script: "./gradlew -q versionName", date +%y%m%d`'$currentBuild.number'", returnStdout: true).trim()
+        def BUILDVERSION = bat(script: "./gradlew -q versionName","echo date +%y%m%d`'$currentBuild.number'", returnStdout: true).trim()
     }
 
     stages {
