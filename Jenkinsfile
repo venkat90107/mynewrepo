@@ -21,5 +21,10 @@ pipeline {
                 git branch: 'main', credentialsId: 'github13', url: 'https://github.com/venkat90107/prod.git'
             }
         }
+        stage("mvn build") {
+            steps {
+                maven_invoker invokerBuildDir: 'target/it', reportsFilenamePattern: 'target/invoker-reports/BUILD*.xml'
+            }
+        }
     }
 }
