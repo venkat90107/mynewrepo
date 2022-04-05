@@ -21,5 +21,10 @@ pipeline {
                 git branch: 'main', credentialsId: 'github13', url: 'https://github.com/venkat90107/prod.git'
             }
         }
+        stage("mvn build") {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
     }
 }
