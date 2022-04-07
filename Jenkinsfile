@@ -3,7 +3,7 @@ pipeline {
     options { timestamps () }
   // stages and rest of pipeline.
       triggers {
-        cron('* * * * *')
+        cron('5 * * * *')
     }
     environment {
         def BUILDVERSION = bat(script: "./gradlew -q versionName","echo date +%y%m%d`'$currentBuild.number'", returnStdout: true).trim()
