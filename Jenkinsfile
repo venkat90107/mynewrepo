@@ -3,10 +3,10 @@ pipeline {
     options { timestamps () }
   // stages and rest of pipeline.
       triggers {
-        cron('* * * * *')
+        cron('5 * * * *')
     }
     environment {
-        def BUILDVERSION = sh(script: "echo  `date +%y%m%d`'$currentBuild.number'", returnStdout: true).trim()
+        def BUILDVERSION = bat(script: "./gradlew -q versionName","echo date +%y%m%d`'$currentBuild.number'", returnStdout: true).trim()
     }
 
     stages {
@@ -21,10 +21,4 @@ pipeline {
                 git branch: 'main', credentialsId: 'github13', url: 'https://github.com/venkat90107/prod.git'
             }
         }
-        stage("mvn build") {
-            steps {
-                sh 'mvn clean install'
-            }
-        }
     }
-}
